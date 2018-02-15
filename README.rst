@@ -25,7 +25,7 @@ Running the example
 To run the Fortran executable built in the previous section do the following (where the current directory is assumed to be `stokes_ale-build`)::
 
   cd ./src/fortran/
-  ./stokes_ale
+  ./stokes_ale_fortran
 
 The results can be visualised by running `visualiseStokesALE.cmgui <./src/fortran/visualiseStokesALE.cmgui>`_ with the `Cmgui visualiser <http://physiomeproject.org/software/opencmiss/cmgui/download>`_.
 
