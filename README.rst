@@ -22,18 +22,10 @@ The fortran version of the example can be configured and built with CMake::
 Running the example
 ===================
 
-Fortran version::
+To run the Fortran executable built in the previous section do the following (where the current directory is assumed to be `stokes_ale-build`)::
 
   cd ./src/fortran/
   ./stokes_ale
-
-Python version::
-
-  source  <path-to-opencmiss>/install/.../.../virtualenvironments/oclibs_pyXY_release/bin/activate
-  cd ./src/python/
-  python stokes_ale.py
-
-where the XY in the path are the Python major and minor versions respectively.
 
 The results can be visualised by running `visualiseStokesALE.cmgui <./src/fortran/visualiseStokesALE.cmgui>`_ with the `Cmgui visualiser <http://physiomeproject.org/software/opencmiss/cmgui/download>`_.
 
