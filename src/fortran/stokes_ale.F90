@@ -1,11 +1,13 @@
-PROGRAM stokes_ale
+PROGRAM StokesALEExample
 
   USE OpenCMISS
   USE OpenCMISS_Iron
 #ifndef NOMPIMOD
   USE MPI
 #endif
+  
   IMPLICIT NONE
+  
 #ifdef NOMPIMOD
 #include "mpif.h"
 #endif
@@ -19,6 +21,7 @@ PROGRAM stokes_ale
   REAL(CMISSRP), PARAMETER :: WIDTH=1.0_CMISSRP
   REAL(CMISSRP), PARAMETER :: LENGTH=1.0_CMISSRP
 
+  INTEGER(CMISSIntg), PARAMETER :: ContextUserNumber=1
   INTEGER(CMISSIntg), PARAMETER :: CoordinateSystemUserNumber=1
   INTEGER(CMISSIntg), PARAMETER :: RegionUserNumber=2
   INTEGER(CMISSIntg), PARAMETER :: MeshUserNumber=3
@@ -130,6 +133,7 @@ PROGRAM stokes_ale
 
   TYPE(cmfe_RegionType) :: Region
   TYPE(cmfe_RegionType) :: WorldRegion
+  TYPE(cmfe_ComputationEnvironmentType) :: computationEnvironment
   TYPE(cmfe_CoordinateSystemType) :: CoordinateSystem
   TYPE(cmfe_CoordinateSystemType) :: WorldCoordinateSystem
   TYPE(cmfe_BasisType) :: BasisGeometry
@@ -188,8 +192,9 @@ PROGRAM stokes_ale
   !CHECK COMPUTATIONAL NODE
 
   !Get the computational nodes information
-  CALL cmfe_ComputationalNumberOfNodesGet(NumberOfComputationalNodes,Err)
-  CALL cmfe_ComputationalNodeNumberGet(ComputationalNodeNumber,Err)
+  CALL cmfe_ComputationEnvironment_Initialise(computationEnvironment,err)
+  CALL cmfe_ComputationEnvironment_NumberOfWorldNodesGet(computationEnvironment,numberOfComputationalNodes,err)
+  CALL cmfe_ComputationEnvironment_WorldNodeNumberGet(computationEnvironment,computationalNodeNumber,err)
 
   !
   !================================================================================================================================
@@ -885,4 +890,4 @@ PROGRAM stokes_ale
   WRITE(*,'(A)') "Program successfully completed."
   STOP
 
-END PROGRAM stokes_ale
+END PROGRAM StokesALEExample
