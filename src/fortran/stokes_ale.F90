@@ -1,11 +1,13 @@
-PROGRAM stokes_ale
+PROGRAM StokesALEExample
 
   USE OpenCMISS
   USE OpenCMISS_Iron
 #ifndef NOMPIMOD
   USE MPI
 #endif
+  
   IMPLICIT NONE
+  
 #ifdef NOMPIMOD
 #include "mpif.h"
 #endif
@@ -888,4 +890,4 @@ PROGRAM stokes_ale
   WRITE(*,'(A)') "Program successfully completed."
   STOP
 
-END PROGRAM stokes_ale
+END PROGRAM StokesALEExample
